@@ -1,0 +1,171 @@
+<svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+
+  <!-- Background -->
+  <rect width="860" height="520" fill="#fafafa" rx="16"/>
+
+  <!-- Title -->
+  <text x="430" y="36" font-size="17" font-weight="700" fill="#1a1a1a" text-anchor="middle">Socket Pattern — Full-Stack Hexagonal Architecture</text>
+  <text x="430" y="56" font-size="12" fill="#888" text-anchor="middle">Every boundary is a contract. Every implementation is a plug.</text>
+
+  <!-- ── Column headers ── -->
+  <text x="80"  y="88" font-size="10" font-weight="700" fill="#aaa" text-anchor="middle" letter-spacing="1.2">CONTRACTS</text>
+  <text x="290" y="88" font-size="10" font-weight="700" fill="#aaa" text-anchor="middle" letter-spacing="1.2">CLASSES</text>
+  <text x="530" y="88" font-size="10" font-weight="700" fill="#aaa" text-anchor="middle" letter-spacing="1.2">LAYER</text>
+  <text x="760" y="88" font-size="10" font-weight="700" fill="#aaa" text-anchor="middle" letter-spacing="1.2">ADAPTERS</text>
+
+  <!-- Column dividers -->
+  <line x1="170" y1="68" x2="170" y2="490" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="400" y1="68" x2="400" y2="490" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="630" y1="68" x2="630" y2="490" stroke="#e8e8e8" stroke-width="1"/>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 1 — UI Layer
+  ═══════════════════════════════════════════════ -->
+
+  <!-- IView contract -->
+  <rect x="20" y="108" width="120" height="48" rx="7" fill="#fff" stroke="#8b5cf6" stroke-width="1.8"/>
+  <text x="80" y="128" font-size="12" font-weight="700" fill="#8b5cf6" text-anchor="middle">IXxxView</text>
+  <text x="80" y="144" font-size="10" fill="#666" text-anchor="middle">Signal&lt;T&gt; state</text>
+
+  <!-- IController contract -->
+  <rect x="20" y="168" width="120" height="48" rx="7" fill="#fff" stroke="#10b981" stroke-width="1.8"/>
+  <text x="80" y="188" font-size="12" font-weight="700" fill="#10b981" text-anchor="middle">IXxxController</text>
+  <text x="80" y="204" font-size="10" fill="#666" text-anchor="middle">action methods</text>
+
+  <!-- dashed lines to ViewController -->
+  <line x1="140" y1="132" x2="200" y2="192" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="140" y1="192" x2="200" y2="192" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="196,185 210,192 196,199" fill="#bbb"/>
+
+  <!-- ViewController box -->
+  <rect x="210" y="160" width="165" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+  <text x="293" y="183" font-size="13" font-weight="700" fill="#10b981" text-anchor="middle">ViewController</text>
+  <text x="293" y="199" font-size="10" fill="#555" text-anchor="middle">impl IXxxView + IXxxController</text>
+  <text x="293" y="213" font-size="10" fill="#888" text-anchor="middle">template bindings + actions</text>
+
+  <!-- ViewController → UI Layer -->
+  <line x1="375" y1="192" x2="415" y2="192" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="408,186 422,192 408,198" fill="#ccc"/>
+
+  <!-- UI Layer box -->
+  <rect x="422" y="160" width="185" height="64" rx="8" fill="#10b981" fill-opacity="0.07" stroke="#10b981" stroke-width="2"/>
+  <text x="515" y="183" font-size="12" font-weight="700" fill="#10b981" text-anchor="middle">Component / Page</text>
+  <text x="515" y="199" font-size="10" fill="#555" text-anchor="middle">Angular @Component</text>
+  <text x="515" y="213" font-size="10" fill="#555" text-anchor="middle">React fn / SwiftUI View</text>
+
+  <!-- UI adapters -->
+  <rect x="648" y="166" width="190" height="24" rx="5" fill="#f3f0ff" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="743" y="183" font-size="10" fill="#8b5cf6" text-anchor="middle">Template / JSX / Markup</text>
+  <line x1="607" y1="192" x2="648" y2="178" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ══════════════════════════════════════════════
+       IView shared port label
+  ═══════════════════════════════════════════════ -->
+  <rect x="148" y="110" width="74" height="20" rx="5" fill="#8b5cf6" fill-opacity="0.12"/>
+  <text x="185" y="124" font-size="9" font-weight="700" fill="#8b5cf6" text-anchor="middle">shared port ↕</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 2 — Domain Layer
+  ═══════════════════════════════════════════════ -->
+
+  <!-- IModel contract -->
+  <rect x="20" y="252" width="120" height="48" rx="7" fill="#fff" stroke="#6366f1" stroke-width="1.8"/>
+  <text x="80" y="272" font-size="12" font-weight="700" fill="#6366f1" text-anchor="middle">IXxxModel</text>
+  <text x="80" y="288" font-size="10" fill="#666" text-anchor="middle">data operations</text>
+
+  <!-- IView also feeds ModelView -->
+  <line x1="140" y1="132" x2="200" y2="282" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="140" y1="272" x2="200" y2="282" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="196,275 210,282 196,289" fill="#bbb"/>
+
+  <!-- ModelView box -->
+  <rect x="210" y="250" width="165" height="64" rx="8" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+  <text x="293" y="273" font-size="13" font-weight="700" fill="#6366f1" text-anchor="middle">ModelView</text>
+  <text x="293" y="289" font-size="10" fill="#555" text-anchor="middle">impl IXxxModel + IXxxView</text>
+  <text x="293" y="303" font-size="10" fill="#888" text-anchor="middle">signals, derived state</text>
+
+  <!-- ModelView → Domain Layer -->
+  <line x1="375" y1="282" x2="415" y2="282" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="408,276 422,282 408,288" fill="#ccc"/>
+
+  <!-- Domain Layer box -->
+  <rect x="422" y="250" width="185" height="64" rx="8" fill="#6366f1" fill-opacity="0.07" stroke="#6366f1" stroke-width="2"/>
+  <text x="515" y="273" font-size="12" font-weight="700" fill="#6366f1" text-anchor="middle">ViewModel / Service</text>
+  <text x="515" y="289" font-size="10" fill="#555" text-anchor="middle">business logic</text>
+  <text x="515" y="303" font-size="10" fill="#555" text-anchor="middle">reactive state (Signals)</text>
+
+  <!-- Domain adapters -->
+  <rect x="648" y="256" width="190" height="24" rx="5" fill="#eef2ff" stroke="#6366f1" stroke-width="1"/>
+  <text x="743" y="273" font-size="10" fill="#6366f1" text-anchor="middle">OrderService, AuthService…</text>
+  <line x1="607" y1="282" x2="648" y2="268" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 3 — Infrastructure Layer
+  ═══════════════════════════════════════════════ -->
+
+  <!-- ICollection contract -->
+  <rect x="20" y="356" width="120" height="48" rx="7" fill="#fff" stroke="#f59e0b" stroke-width="1.8"/>
+  <text x="80" y="376" font-size="12" font-weight="700" fill="#f59e0b" text-anchor="middle">ICollection</text>
+  <text x="80" y="392" font-size="10" fill="#666" text-anchor="middle">find, insert, update…</text>
+
+  <!-- IEmailSender contract -->
+  <rect x="20" y="416" width="120" height="48" rx="7" fill="#fff" stroke="#f59e0b" stroke-width="1.8"/>
+  <text x="80" y="436" font-size="12" font-weight="700" fill="#f59e0b" text-anchor="middle">IEmailSender</text>
+  <text x="80" y="452" font-size="10" fill="#666" text-anchor="middle">send(to, subject…)</text>
+
+  <!-- lines to Infra layer -->
+  <line x1="140" y1="380" x2="200" y2="372" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="140" y1="440" x2="200" y2="372" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="196,365 210,372 196,379" fill="#bbb"/>
+
+  <!-- Infra Layer box -->
+  <rect x="210" y="340" width="165" height="64" rx="8" fill="#fff" stroke="#f59e0b" stroke-width="2"/>
+  <text x="293" y="363" font-size="13" font-weight="700" fill="#f59e0b" text-anchor="middle">Infrastructure</text>
+  <text x="293" y="379" font-size="10" fill="#555" text-anchor="middle">impl ICollection</text>
+  <text x="293" y="393" font-size="10" fill="#555" text-anchor="middle">impl IEmailSender…</text>
+
+  <!-- Infra → adapters -->
+  <line x1="375" y1="372" x2="415" y2="372" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="408,366 422,372 408,378" fill="#ccc"/>
+
+  <!-- Infra provider box -->
+  <rect x="422" y="340" width="185" height="64" rx="8" fill="#f59e0b" fill-opacity="0.07" stroke="#f59e0b" stroke-width="2"/>
+  <text x="515" y="363" font-size="12" font-weight="700" fill="#d97706" text-anchor="middle">Provider Adapters</text>
+  <text x="515" y="379" font-size="10" fill="#555" text-anchor="middle">MongoDB / DynamoDB / Cosmos</text>
+  <text x="515" y="393" font-size="10" fill="#555" text-anchor="middle">SendGrid / SMTP / Mock</text>
+
+  <!-- Infra adapters -->
+  <rect x="648" y="346" width="90" height="24" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="693" y="363" font-size="10" fill="#d97706" text-anchor="middle">MongoDB</text>
+  <rect x="748" y="346" width="90" height="24" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="793" y="363" font-size="10" fill="#d97706" text-anchor="middle">DynamoDB</text>
+  <rect x="648" y="378" width="90" height="24" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="693" y="395" font-size="10" fill="#d97706" text-anchor="middle">SendGrid</text>
+  <rect x="748" y="378" width="90" height="24" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="793" y="395" font-size="10" fill="#d97706" text-anchor="middle">InMemory</text>
+  <line x1="607" y1="372" x2="648" y2="358" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="607" y1="372" x2="648" y2="390" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ══════════════════════════════════════════════
+       Vertical flow arrow (left side)
+  ═══════════════════════════════════════════════ -->
+  <line x1="293" y1="224" x2="293" y2="250" stroke="#ddd" stroke-width="2"/>
+  <polygon points="287,244 293,256 299,244" fill="#ddd"/>
+  <line x1="293" y1="314" x2="293" y2="340" stroke="#ddd" stroke-width="2"/>
+  <polygon points="287,334 293,346 299,334" fill="#ddd"/>
+
+  <!-- ══════════════════════════════════════════════
+       Legend
+  ═══════════════════════════════════════════════ -->
+  <rect x="20" y="476" width="820" height="36" rx="8" fill="#f0f0f0"/>
+  <rect x="36" y="488" width="12" height="12" rx="2" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="54" y="499" font-size="10" fill="#555">UI contracts</text>
+  <rect x="136" y="488" width="12" height="12" rx="2" fill="none" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="154" y="499" font-size="10" fill="#555">Domain contracts</text>
+  <rect x="276" y="488" width="12" height="12" rx="2" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="294" y="499" font-size="10" fill="#555">Infrastructure contracts</text>
+  <rect x="446" y="488" width="12" height="12" rx="2" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="464" y="499" font-size="10" fill="#555">IView = shared port between UI and Domain</text>
+  <line x1="676" y1="494" x2="700" y2="494" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="708" y="499" font-size="10" fill="#555">implements</text>
+</svg>
