@@ -1,20 +1,18 @@
 ---
 name: source-triage
 description: >
-  Use this skill whenever someone needs to find, verify, and triage academic or research sources
-  for a dissertation, thesis, essay, or research project — especially when the student already has
-  some base documents and needs to know what else to read and in what order.
+  Use whenever someone needs to find, verify, and triage academic/research sources for a
+  dissertation, thesis, essay, or research project — especially when they already have some base
+  documents and need to know what else to read and in what order.
 
   Triggers: "find sources for my dissertation", "triage these links", "I need a reading list",
-  "she already has X and Y, what else does she need?", "verify these links are active",
-  "what should I read for [topic]?", "generate a source triage", "research sources for [topic]",
-  "can you find academic sources on [topic]?", "triagem de fontes", "lista de leitura".
+  "verify these links are active", "what should I read for [topic]?", "research sources for
+  [topic]", "can you find academic sources on [topic]?".
 
-  The skill searches for relevant sources using WebSearch, verifies each link is live, classifies
-  every source relative to what the student already owns (ESSENTIAL / COMPLEMENTARY / SECONDARY),
-  and produces a polished landscape .docx + .pdf with a clickable triage table and a suggested
-  reading order. Always invoke this skill when the request involves finding and organising sources
-  for academic research — even if the user just says "find me sources on X".
+  Searches with WebSearch, verifies each link is live, classifies every source relative to what's
+  already owned (ESSENTIAL / COMPLEMENTARY / SECONDARY), and produces a landscape .docx + .pdf
+  with a clickable triage table and reading order. Always invoke for requests to find and organize
+  academic sources — even without explicit dissertation framing.
 ---
 
 # Source Triage Skill
