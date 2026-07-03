@@ -43,6 +43,7 @@ Git and documentation helpers.
 | Skill | What it does |
 |---|---|
 | [pull-request](pull-request/SKILL.md) | Generates a standardized Azure DevOps PR from the current branch's git diff: reads the diff, pre-fills the project template, asks only for missing info, and writes pull_request.md. |
+| [pr-review](pr-review/SKILL.md) | Reviews a PR/branch diff for problems and suggestions: general checklist (correctness, unexplained behavior changes, consistency, dead code, scope creep) plus stack-specific checks auto-loaded for React or Java 25 diffs. |
 | [conventional-commit](conventional-commit/SKILL.md) | Inspects the git diff and creates a commit following the Conventional Commits 1.0.0 spec (confirms first, never pushes). |
 | [requirements-doc](requirements-doc/SKILL.md) | Interviews you for requirements, then generates a Confluence-ready technical/design doc in Markdown (two-phase: ask → write). |
 | [azure-devops-workitem](azure-devops-workitem/SKILL.md) | Creates, refines, and validates Azure DevOps work item descriptions (US/Task/Subtask) in a copy-paste-ready format; asks output language (default English); never infers or consolidates by name. |
@@ -54,3 +55,4 @@ Standalone skills.
 | Skill | What it does |
 |---|---|
 | [codebase-to-course](codebase-to-course/SKILL.md) | Turns any codebase into an interactive, self-contained HTML course (scroll-based navigation, animated visualizations, quizzes, and code↔English translations) aimed at non-technical learners. |
+| [source-triage](source-triage/SKILL.md) | Finds, verifies, and triages academic/research sources for a dissertation or essay: classifies each source as ESSENTIAL/COMPLEMENTARY/SECONDARY against what the student already owns, and outputs a landscape .docx + .pdf with a clickable triage table and reading order. |
