@@ -19,7 +19,6 @@ Stack-specific and general coding standards.
 | [ux-localisation](ux-localisation/SKILL.md) | UX copy & i18n guide for any app: a maintained terminology glossary, a clear product voice, per-language tone adaptation, key parity across locales, changed-keys-only output. |
 | [ui-ux-audit](ui-ux-audit/SKILL.md) | UI/UX design audit for any app against its own design system: reads the existing tokens, ranks findings by severity, gives concrete fixes, never reinvents the design. |
 | [spring-batch-analysis](spring-batch-analysis/SKILL.md) | Functional documentation of a Java/Spring Batch job from its code: functional description, affected tables, implicit business rules, and a Mermaid flow (optional Confluence publish). |
-| [selection-field-analysis](selection-field-analysis/SKILL.md) | Inventories backend-dependent Dropdown/Selection Field form fields from US/EP/Confluence docs into a consolidated per-EP table, with zero-inference rules and cross-EP grouping. |
 
 ## Video production
 
