@@ -62,10 +62,12 @@ detail processing, business validations, domain-table writes, and step/job liste
 - Use the **real** names of tables, files, and components visible in the code; don't
   translate technical names; don't add steps that don't exist.
 
-## Optional — publish to Confluence
+## Optional — publish to Confluence or Wiki
 
-After the document is approved, offer to publish it. If an Atlassian/Confluence connector
-is connected, ask for the target **space** and **parent page**, then create the page with
-the four sections (the Mermaid block included). If no connector is available, output the
-Markdown for manual paste and let the user know they can connect Atlassian to publish
-automatically.
+After the document is approved, offer to publish it. Try MCP tools in this order:
+
+- **Atlassian/Confluence connector** — if connected, ask for the target **space** and **parent page**, then create the page with the four sections (the Mermaid block included).
+- **Azure DevOps MCP** — use `mcp_azure_devops_create_wiki_page` to publish to the project's ADO Wiki.
+- **GitHub MCP** — use `mcp_github_create_or_update_file` to push the Markdown to a `docs/` folder or GitHub Pages branch.
+- **GitLab MCP** — use `mcp_gitlab_create_file` to push to the repo's `docs/` folder.
+- **Fallback** — if no connector or MCP tools are available, output the Markdown for manual paste and let the user know.

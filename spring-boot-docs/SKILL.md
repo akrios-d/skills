@@ -94,3 +94,12 @@ Only with a ticket reference and concrete action:
 ```
 
 A `// TODO` with no context is noise — create a ticket first.
+
+## Optional — publish documentation
+
+After the documentation is approved, offer to publish it. Try MCP tools in this order:
+
+- **GitHub MCP** — use `mcp_github_create_or_update_file` to push the generated Markdown to a `docs/` folder in the repository, or to a `gh-pages` branch for GitHub Pages.
+- **GitLab MCP** — use `mcp_gitlab_create_file` or `mcp_gitlab_update_file` to push to the repo's `docs/` folder or a GitLab Pages branch.
+- **Azure DevOps MCP** — use `mcp_azure_devops_create_wiki_page` to publish directly to the project's Wiki.
+- **Fallback** — if no MCP tools are available, output the Markdown for manual paste and inform the user.

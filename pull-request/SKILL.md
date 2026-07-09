@@ -72,8 +72,27 @@ When authorized, output, in English:
 2. A section titled `### pull_request.md` — the full filled template in a separate
    Markdown block, and also write it to a `pull_request.md` file as a deliverable.
 
+## Step 6 — Publish (optional — only if user asks)
+
+If the user explicitly asks to publish the PR/MR directly, try MCP tools in this order:
+
+### GitLab MCP (if remote is GitLab)
+- Use `mcp_gitlab_create_merge_request` with `title`, `description`, `source_branch`, and `target_branch`.
+- If the MR already exists, use `mcp_gitlab_update_merge_request` to update the description.
+
+### GitHub MCP (if remote is GitHub)
+- Use `mcp_github_create_pull_request` with `title`, `body`, `head`, and `base`.
+- If the PR already exists, use `mcp_github_update_pull_request` to update the description.
+
+### Azure DevOps MCP (if remote is Azure DevOps)
+- Use `mcp_azure_devops_create_pull_request` with `title`, `description`, `sourceBranch`, `targetBranch`, and optionally `workItemRefs`.
+
+### Rules for publishing
+- **Never publish automatically** — always show the PR text to the user first and wait for explicit approval.
+- If MCP tools are not available, output the `pull_request.md` file and instruct the user to paste it manually.
+- Do not push the branch — leave that to the user.
+
 ## Notes
 
-- This does not access Azure DevOps and does not replace code review.
 - The clearer the diff and commit messages, the better the generated PR.
 - Review the content before submitting.

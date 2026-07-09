@@ -20,7 +20,13 @@ When the skill is first triggered and the user hasn't specified a codebase yet, 
 >
 > I'll read through the code, figure out how everything fits together, and generate a beautiful single-page HTML course with animated diagrams, plain-English code explanations, and interactive quizzes. The whole thing runs in your browser — no setup needed.
 
-If the user provides a GitHub link, clone the repo first (`git clone <url> /tmp/<repo-name>`) before starting the analysis. If they say "this codebase" or similar, use the current working directory.
+If the user provides a GitHub link, try MCP tools first before falling back to `git clone`:
+
+1. **MCP GitHub** — use `mcp_github_get_repository` to confirm the repo exists, then `mcp_github_get_file_contents` to read key files (README, entry points, package.json/pom.xml, main source files). This avoids cloning entirely and works in sandboxed environments.
+2. **MCP GitLab** — use `mcp_gitlab_get_repository` and `mcp_gitlab_get_file` similarly for GitLab-hosted repos.
+3. **`git clone` fallback** — if MCP tools are not available, clone the repo (`git clone <url> /tmp/<repo-name>`) before starting the analysis.
+
+If they say "this codebase" or similar, use the current working directory.
 
 ## Who This Is For
 
@@ -193,6 +199,12 @@ This produces a self-contained `index.html` (CSS and JS inlined). Open it in the
 ### Phase 4: Review and Open
 
 After running `build.sh`, open `index.html` in the browser. Walk the user through what was built and ask for feedback on content, design, and interactivity.
+
+If the user asks to publish the course online, try MCP tools:
+
+- **GitHub Pages (MCP GitHub)** — use `mcp_github_create_repository` (if needed), then `mcp_github_create_or_update_file` to push `index.html` to a `gh-pages` branch or `docs/` folder. GitHub Pages will serve it automatically.
+- **GitLab Pages (MCP GitLab)** — use `mcp_gitlab_create_file` to push `index.html` and a `.gitlab-ci.yml` that deploys to GitLab Pages.
+- **Fallback** — if MCP tools are not available, instruct the user to push the `index.html` to a repository and enable Pages in the settings.
 
 ---
 

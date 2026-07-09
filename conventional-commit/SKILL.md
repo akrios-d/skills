@@ -79,6 +79,17 @@ git commit -m "feat(api)!: change auth header format" \
 
 Report the result (`git log -1 --oneline`). **Do not push** — leave that to the user.
 
+## Optional — open a PR/MR after committing (only if user asks)
+
+If the user explicitly asks to open a PR/MR after the commit, try MCP tools in this order:
+
+- **GitLab MCP** — use `mcp_gitlab_create_merge_request` with the current branch as `source_branch` and `main` (or the detected base branch) as `target_branch`. Use the commit subject as the MR title.
+- **GitHub MCP** — use `mcp_github_create_pull_request` with `head`, `base`, `title`, and `body` derived from the commit message.
+- **Azure DevOps MCP** — use `mcp_azure_devops_create_pull_request` with `sourceBranch`, `targetBranch`, and `title`.
+- **Fallback** — if no MCP tools are available, output the branch name and commit message so the user can open the PR/MR manually.
+
+**Never push the branch or open a PR/MR without explicit user request.**
+
 ## Notes
 
 - Casing is not enforced by the spec except `BREAKING CHANGE` (uppercase); be consistent.

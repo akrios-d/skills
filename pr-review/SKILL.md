@@ -12,13 +12,15 @@ Review a set of code changes (a PR/MR, a branch diff, or a pasted diff) and repo
 Try these in order, and stop at the first that works:
 
 1. **User pasted a diff directly** — use it as-is.
-2. **`gh` CLI available and remote is GitHub** — `gh pr list` to find the PR, then `gh pr diff <number>`.
-3. **Local git repo, no GitHub/gh** — figure out the base branch (usually `main`/`master`/`develop`, check `git remote show origin` or just try the common names) and run something like:
+2. **MCP GitLab tool available** — use `mcp_gitlab_get_merge_request_changes` or equivalent to fetch the MR diff directly by project path and MR IID. Prefer this over `gh` when the remote is GitLab.
+3. **MCP GitHub tool available** — use `mcp_github_get_pull_request_files` or equivalent to fetch the PR diff directly by owner/repo and PR number. Prefer this over `gh` CLI when MCP is available.
+4. **`gh` CLI available and remote is GitHub** — `gh pr list` to find the PR, then `gh pr diff <number>`.
+5. **Local git repo, no GitHub/gh** — figure out the base branch (usually `main`/`master`/`develop`, check `git remote show origin` or just try the common names) and run something like:
    ```
    git diff <base>...<current-branch> -- ':!*.lock' ':!package-lock.json' ':!*.min.js'
    ```
    Prefer three-dot (`...`, diff against the merge-base) over two-dot — it shows only what the branch actually adds, not unrelated drift on the base branch.
-4. **Nothing obvious** — ask the user which branch, PR link, or diff to look at. Don't guess at a base branch or silently review the wrong thing.
+6. **Nothing obvious** — ask the user which branch, PR link, or diff to look at. Don't guess at a base branch or silently review the wrong thing.
 
 If the diff is huge (property of hobby/monorepo changes, generated files, lockfiles), exclude generated/vendored paths so you're reading signal, not noise.
 
@@ -50,10 +52,29 @@ If there's a PR description, ticket, or commit messages available, skim them for
 
 - Group findings by concern, in prose — not one bullet per changed line, and not a bullet for every file whether or not it has an issue.
 - For each finding: say what changed, why it matters, and if you can't tell intent from the diff alone, ask rather than assert it's wrong.
+- **For every finding, include the exact file path and the line or line range in the new file** where the reviewer should place the GitLab/GitHub comment — format it as `**File:** path/to/file.ext` + `**Line:** N` (or `**Lines:** N–M`). Use the right-hand (new file) line numbers from the diff.
 - Don't restate the whole diff back to the user — they can already see it.
 - Close by separating what's actually blocking from what's a question or nice-to-have, so the user knows what needs a decision before merging.
 - Reply in the same language the user used.
 - If a file or section is clean, say nothing about it — don't manufacture a finding to look thorough.
+
+## 6. Publish the review (optional — only if user asks)
+
+If the user explicitly asks to publish the review to the PR/MR, use MCP tools to post findings as inline comments:
+
+### GitLab (MCP)
+- Use `mcp_gitlab_create_merge_request_note` to post a general MR comment with the full review summary.
+- Use `mcp_gitlab_create_merge_request_discussion` (if available) to post inline comments at specific file + line positions.
+
+### GitHub (MCP)
+- Use `mcp_github_create_review` to submit a full review with all findings at once — set `event` to `COMMENT` (not `REQUEST_CHANGES`) unless the user explicitly asks to block the PR.
+- Use `mcp_github_create_review_comment` to post individual inline comments at specific file + line positions.
+
+### Rules for publishing
+- **Never publish automatically** — always show the review to the user first and wait for explicit approval before posting.
+- Post inline comments where possible (file + line) — fall back to a general comment if the MCP tool doesn't support inline.
+- If a finding has no specific line (e.g. a missing file, a general architecture concern), post it as a top-level PR/MR comment.
+- Do not post empty or duplicate comments — if a finding was already posted in a previous run, skip it.
 
 ## Notes
 

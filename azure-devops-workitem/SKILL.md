@@ -66,3 +66,22 @@ Acceptance Criteria (if applicable):
 
 If required information is missing, ask for it (or list the gaps) before finalizing —
 do not fill gaps with assumptions.
+
+## 5. Publish directly (optional — only if user asks)
+
+If the user explicitly asks to create or update the work item directly, try MCP tools:
+
+### Azure DevOps MCP
+- **Create:** use `mcp_azure_devops_create_work_item` with:
+  - `type` — `User Story`, `Task`, or `Bug` as appropriate
+  - `title` — from the generated output
+  - `description` — the full formatted description
+  - `areaPath` / `iterationPath` — if provided by the user
+  - `parentId` — if the user specifies a parent Epic/Story
+- **Update:** use `mcp_azure_devops_update_work_item` to patch an existing item by ID.
+- **Link subtasks:** use `mcp_azure_devops_create_work_item_link` to link child tasks to a parent Story.
+
+### Rules for publishing
+- **Never publish automatically** — always show the work item content to the user first and wait for explicit approval.
+- If MCP tools are not available, output the copy-paste-ready format and instruct the user to create it manually in Azure DevOps.
+- Do not infer the area path, iteration, or team — ask the user if needed.
